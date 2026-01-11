@@ -356,55 +356,106 @@
 // //   navy: "#1A24A0",
 // //   gold: "#DD9637",
 // // };
-
 import { EVENT } from "@/lib/config";
 import { Reveal } from "@/components/ui/reveal";
 import { RSVPForm } from "@/components/ui/rsvp-form";
 import { DonateCard } from "@/components/ui/donate-card";
-import { CalendarDays, Clock3, MapPin, Sparkles } from "lucide-react";
+import { CalendarDays, Clock3, MapPin, Sparkles, Heart } from "lucide-react";
+
+const NAVY = "#1A24A0";
+const GOLD = "#DD9637";
 
 export default function Page() {
   const d = EVENT.details;
 
   return (
     <main className="relative min-h-screen overflow-hidden">
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0 grain">
-        <div className="absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_0%,rgba(255,255,255,0.10),transparent_55%),radial-gradient(900px_circle_at_90%_30%,rgba(255,255,255,0.06),transparent_55%),radial-gradient(900px_circle_at_50%_120%,rgba(255,255,255,0.08),transparent_55%)]" />
+      {/* Background overlays */}
+      <div className="pointer-events-none absolute inset-0 grain" />
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute -top-24 left-[-120px] h-[420px] w-[420px] rounded-full blur-3xl"
+          style={{
+            background: `radial-gradient(circle, ${GOLD}33 0%, transparent 60%)`,
+          }}
+        />
+        <div
+          className="absolute -bottom-32 right-[-120px] h-[520px] w-[520px] rounded-full blur-3xl"
+          style={{
+            background: `radial-gradient(circle, ${NAVY}55 0%, transparent 62%)`,
+          }}
+        />
       </div>
 
       {/* Top bar */}
       <div className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-6 md:px-8">
-        <div className="flex items-center gap-2 text-white/80">
-          <div className="grid h-9 w-9 place-items-center rounded-2xl bg-white/10 ring-1 ring-white/10">
-            <Sparkles className="h-4 w-4" />
+        <div className="flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-2xl glass">
+            <Sparkles className="h-4 w-4" style={{ color: GOLD }} />
           </div>
-          <p className="text-sm tracking-wide">Event Pass</p>
+          <div className="leading-tight">
+            <p className="text-sm font-medium tracking-wide text-white/85">
+              Event Pass
+            </p>
+            <p className="text-xs text-white/55">
+              RSVP • Donation • Service Details
+            </p>
+          </div>
         </div>
-        <div className="text-xs text-white/50">RSVP • Donation • Details</div>
+
+        <div className="hidden md:flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-white/70">
+          <span
+            className="inline-block h-1.5 w-1.5 rounded-full"
+            style={{ background: GOLD }}
+          />
+          Kindly RSVP to help us plan well
+        </div>
       </div>
 
-      {/* Hero */}
-      <section className="relative mx-auto grid max-w-6xl gap-10 px-5 pb-14 pt-6 md:grid-cols-12 md:px-8 md:pb-20 md:pt-12">
+      {/* Hero + content */}
+      <section className="relative mx-auto grid max-w-6xl gap-10 px-5 pb-14 pt-2 md:grid-cols-12 md:px-8 md:pb-20 md:pt-8">
+        {/* Left */}
         <div className="md:col-span-7">
           <Reveal>
-            <p className="text-white/60">{EVENT.titleLine}</p>
+            <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-white/75">
+              <Heart className="h-4 w-4" style={{ color: GOLD }} />
+              In loving memory
+            </div>
           </Reveal>
 
           <Reveal delay={0.06}>
-            <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl">
-              <span className="serif font-semibold">{EVENT.personName}</span>
+            <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight md:text-6xl">
+              <span className="serif font-semibold text-white">
+                {EVENT.personName}
+              </span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.12}>
-            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-white/70 md:text-lg">
+            <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-white/75 md:text-lg">
               {EVENT.quote}
             </p>
           </Reveal>
 
           <Reveal delay={0.18}>
-            <div className="mt-10 grid gap-3 rounded-3xl bg-white/5 p-5 ring-1 ring-white/10 md:max-w-xl md:p-6">
+            <div className="mt-8 max-w-xl rounded-3xl glass p-5 md:p-6">
+              <p className="text-sm leading-relaxed text-white/75">
+                You are warmly welcome to join the family as we celebrate a life
+                of faith, service, and love. Kindly RSVP to help us make
+                adequate arrangements.
+              </p>
+              <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
+                <span
+                  className="inline-block h-1.5 w-1.5 rounded-full"
+                  style={{ background: GOLD }}
+                />
+                Your presence means a lot.
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.22}>
+            <div className="mt-8 grid gap-3 rounded-3xl glass p-5 md:max-w-xl md:p-6">
               <DetailRow
                 icon={<CalendarDays className="h-4 w-4" />}
                 label="Date"
@@ -420,18 +471,38 @@ export default function Page() {
                 label="Venue"
                 value={d.venue}
               />
-              <div className="pl-7 text-sm text-white/50">{d.address}</div>
+              <div className="pl-7 text-sm text-white/60">{d.address}</div>
             </div>
           </Reveal>
         </div>
 
-        {/* Right column */}
+        {/* Right */}
         <div className="md:col-span-5">
           <div className="grid gap-5">
             <Reveal delay={0.1}>
+              <section className="rounded-3xl glass p-5">
+                <h2 className="serif text-2xl font-semibold text-white">
+                  A life celebrated
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">
+                  Thank you for standing with the family in prayer and love.
+                  Your presence, kind words, and support are deeply appreciated.
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
+                  <span
+                    className="inline-block h-1.5 w-1.5 rounded-full"
+                    style={{ background: GOLD }}
+                  />
+                  RSVP and donation details are available below.
+                </div>
+              </section>
+            </Reveal>
+
+            <Reveal delay={0.14}>
               <DonateCard />
             </Reveal>
-            <Reveal delay={0.16}>
+
+            <Reveal delay={0.18}>
               <RSVPForm />
             </Reveal>
           </div>
@@ -439,13 +510,15 @@ export default function Page() {
       </section>
 
       {/* Footer */}
-      <footer className="relative mx-auto max-w-6xl px-5 pb-10 pt-4 text-center text-white/45 md:px-8">
-        <p className="text-sm">
-          Thank you for your prayers, love, and support during this time.
-        </p>
-        <p className="mt-2 text-xs text-white/35">
-          © {new Date().getFullYear()} • Memorial Event Pass
-        </p>
+      <footer className="relative border-t border-white/10">
+        <div className="mx-auto max-w-6xl px-5 py-10 text-center md:px-8">
+          <p className="text-sm text-white/70">
+            Thank you for your prayers, love, and support.
+          </p>
+          <p className="mt-2 text-xs text-white/50">
+            © {new Date().getFullYear()} • Memorial Event Pass
+          </p>
+        </div>
       </footer>
     </main>
   );
@@ -462,11 +535,18 @@ function DetailRow({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="grid h-7 w-7 place-items-center rounded-xl bg-white/10 text-white/80 ring-1 ring-white/10">
+      <div
+        className="grid h-7 w-7 place-items-center rounded-xl"
+        style={{
+          background: "rgba(221,150,55,0.15)",
+          border: "1px solid rgba(221,150,55,0.30)",
+          color: "#DD9637",
+        }}
+      >
         {icon}
       </div>
-      <p className="text-sm text-white/55">{label}</p>
-      <p className="ml-auto text-sm font-medium text-white/85">{value}</p>
+      <p className="text-sm text-white/65">{label}</p>
+      <p className="ml-auto text-sm font-medium text-white/90">{value}</p>
     </div>
   );
 }

@@ -18,7 +18,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2, Sparkles, CheckCircle2 } from "lucide-react";
+
+const GOLD = "#DD9637";
 
 export function RSVPForm() {
   const form = useForm<RSVPInput>({
@@ -34,6 +36,7 @@ export function RSVPForm() {
   });
 
   const isSubmitting = form.formState.isSubmitting;
+  const isSubmitSuccessful = form.formState.isSubmitSuccessful;
 
   async function onSubmit(values: RSVPInput) {
     try {
@@ -64,8 +67,10 @@ export function RSVPForm() {
   }
 
   return (
-    <Card className="border-white/10 bg-white/5 backdrop-blur-xl">
-      <div className="p-6 md:p-8">
+    <Card className="relative overflow-hidden rounded-3xl glass">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(650px_circle_at_10%_0%,rgba(221,150,55,0.18),transparent_60%)]" />
+
+      <div className="relative p-6 md:p-8">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-sm text-white/70">Event Pass</p>
@@ -77,10 +82,17 @@ export function RSVPForm() {
             </p>
           </div>
 
-          <div className="hidden md:grid h-11 w-11 place-items-center rounded-2xl bg-white/10 ring-1 ring-white/10">
-            <Sparkles className="h-5 w-5 text-white/80" />
+          <div className="hidden md:grid h-11 w-11 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
+            <Sparkles className="h-5 w-5" style={{ color: GOLD }} />
           </div>
         </div>
+
+        {isSubmitSuccessful && (
+          <div className="mt-5 flex items-center gap-2 rounded-2xl bg-emerald-500/10 px-4 py-3 text-sm text-emerald-100 ring-1 ring-emerald-500/20">
+            <CheckCircle2 className="h-4 w-4" />
+            RSVP submitted. Thank you for confirming.
+          </div>
+        )}
 
         <form onSubmit={form.handleSubmit(onSubmit)} className="mt-7 space-y-6">
           <input type="hidden" {...form.register("eventId")} />
@@ -89,7 +101,7 @@ export function RSVPForm() {
             <Label className="text-white/80">Full Name *</Label>
             <Input
               placeholder="Enter your full name"
-              className="border-white/10 bg-black/20 text-white placeholder:text-white/30 focus-visible:ring-white/20"
+              className="border-white/10 bg-white/5 text-white placeholder:text-white/35 focus-visible:ring-[rgba(221,150,55,0.35)]"
               {...form.register("fullName")}
             />
             <Err msg={form.formState.errors.fullName?.message} />
@@ -101,7 +113,7 @@ export function RSVPForm() {
               <Input
                 type="email"
                 placeholder="your.email@example.com"
-                className="border-white/10 bg-black/20 text-white placeholder:text-white/30 focus-visible:ring-white/20"
+                className="border-white/10 bg-white/5 text-white placeholder:text-white/35 focus-visible:ring-[rgba(221,150,55,0.35)]"
                 {...form.register("emailAddress")}
               />
               <Err msg={form.formState.errors.emailAddress?.message} />
@@ -112,7 +124,7 @@ export function RSVPForm() {
               <Input
                 type="tel"
                 placeholder="0800 000 0000"
-                className="border-white/10 bg-black/20 text-white placeholder:text-white/30 focus-visible:ring-white/20"
+                className="border-white/10 bg-white/5 text-white placeholder:text-white/35 focus-visible:ring-[rgba(221,150,55,0.35)]"
                 {...form.register("phoneNumber")}
               />
               <Err msg={form.formState.errors.phoneNumber?.message} />
@@ -127,7 +139,7 @@ export function RSVPForm() {
                 form.setValue("sex", v, { shouldTouch: true })
               }
             >
-              <SelectTrigger className="border-white/10 bg-black/20 text-white focus:ring-white/20">
+              <SelectTrigger className="border-white/10 bg-white/5 text-white focus:ring-[rgba(221,150,55,0.35)]">
                 <SelectValue placeholder="Select an option" />
               </SelectTrigger>
               <SelectContent>
@@ -145,7 +157,10 @@ export function RSVPForm() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-2xl bg-white text-black hover:bg-white/90"
+            className="w-full rounded-2xl text-white disabled:opacity-60"
+            style={{
+              background: `linear-gradient(90deg, ${GOLD}, ${GOLD}CC)`,
+            }}
           >
             {isSubmitting ? (
               <>
@@ -157,7 +172,7 @@ export function RSVPForm() {
             )}
           </Button>
 
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/50">
             By submitting, you confirm your RSVP details are correct.
           </p>
         </form>
@@ -172,5 +187,5 @@ function Field({ children }: { children: React.ReactNode }) {
 
 function Err({ msg }: { msg?: string }) {
   if (!msg) return null;
-  return <p className="text-xs text-red-300">{msg}</p>;
+  return <p className="text-xs text-rose-200">{msg}</p>;
 }

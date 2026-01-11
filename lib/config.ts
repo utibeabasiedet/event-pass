@@ -1,8 +1,10 @@
 export const EVENT = {
   eventId: "samuel-iyomere-burial",
-  personName: "Rev. Dr. Samuel Iyomere",
+  personName: "DR. MICHAEL EJUEYITSE JEMIDE IYOMERE",
   titleLine: "Burial Service & Celebration of Life",
-  quote: "“Those we love don’t go away; they walk beside us every day.”",
+  quote:
+    "“We gather in gratitude for a life of faith and service — and we find comfort in the love shared and the memories that remain.”",
+
   // Update these details as needed:
   details: {
     date: "Saturday, February 1, 2026",
