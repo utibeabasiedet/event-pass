@@ -7,10 +7,10 @@ export const EVENT = {
 
   // Update these details as needed:
   details: {
-    date: "Saturday, February 1, 2026",
-    time: "10:00 AM",
-    venue: "—",
-    address: "—",
+    date: "Friday, February 6, 2026",
+    time: "9:00 AM",
+    venue: "Vaults & Gardens, Lekki",
+    address: "KM 36, Lekki-Epe Expressway, Beside mayfair gardens, Lagos",
   },
   donation: {
     bankName: "Wema Bank",

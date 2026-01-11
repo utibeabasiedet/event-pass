@@ -398,7 +398,7 @@ export default function Page() {
               Event Pass
             </p>
             <p className="text-xs text-white/55">
-              RSVP • Donation • Service Details
+              RSVP • Service Details
             </p>
           </div>
         </div>
@@ -419,7 +419,7 @@ export default function Page() {
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-white/75">
               <Heart className="h-4 w-4" style={{ color: GOLD }} />
-              In loving memory
+              In loving memory of
             </div>
           </Reveal>
 
