@@ -142,13 +142,13 @@ export function RSVPForm() {
               <SelectTrigger className="border-white/10 bg-white/5 text-white focus:ring-[rgba(221,150,55,0.35)]">
                 <SelectValue placeholder="Select an option" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="z-50 bg-white/85 text-[#1A24A0]">
                 <SelectItem value="male">Male</SelectItem>
                 <SelectItem value="female">Female</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
-                <SelectItem value="prefer-not-to-say">
+                {/* <SelectItem value="other">Other</SelectItem> */}
+                {/* <SelectItem value="prefer-not-to-say">
                   Prefer not to say
-                </SelectItem>
+                </SelectItem> */}
               </SelectContent>
             </Select>
             <Err msg={form.formState.errors.sex?.message} />

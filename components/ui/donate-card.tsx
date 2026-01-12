@@ -53,10 +53,12 @@ export function DonateCard() {
           </div>
 
           <div className="min-w-0">
-            <p className="text-sm text-white/70">For those who wish to give</p>
-            <h3 className="mt-0.5 text-lg font-semibold tracking-tight text-white">
+            <p className="text-sm text-white/70">
+              For those who wish to donate.
+            </p>
+            {/* <h3 className="mt-0.5 text-lg font-semibold tracking-tight text-white">
               {d.accountName}
-            </h3>
+            </h3> */}
             <p className="mt-1 text-xs text-white/55">
               Your generosity is appreciated. Thank you for your support.
             </p>
@@ -64,6 +66,12 @@ export function DonateCard() {
         </div>
 
         <div className="mt-5 grid gap-3 rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+          <Row
+            label="Account Name"
+            value={d.accountName}
+            onCopy={() => copy(d.accountName, "Samuel Iyomere")}
+            copied={copiedKey === "Samuel Iyomere"}
+          />
           <Row
             label="Bank"
             value={d.bankName}
