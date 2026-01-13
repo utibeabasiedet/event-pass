@@ -5,13 +5,29 @@ export const EVENT = {
   quote:
     "“We gather in gratitude for a life of faith and service — and we find comfort in the love shared and the memories that remain.”",
 
-  // Update these details as needed:
-  details: {
+  schedule: {
     date: "Friday, February 6, 2026",
-    time: "9:00 AM",
-    venue: "Vaults & Gardens, Lekki",
-    address: "KM 36, Lekki-Epe Expressway, Beside mayfair gardens, Lagos",
+    funeralTime: "9:00 AM",
+    locations: [
+      {
+        label: "Wakekeep",
+        venue: "17 Tony Iweakuba St.",
+        address: "Green State Estate, Baba Adisa, Ijebu-Lekki, Lagos",
+      },
+      {
+        label: "Funeral Service",
+        venue: "Vaults & Gardens Private Cemetery",
+        address:
+          "KM 36, Lekki-Epe Expressway, Beside Mayfair Garden Estate, Awoyaya, Lagos",
+      },
+      {
+        label: "Reception",
+        venue: "Sapphire Grill",
+        address: "KM 31, Lekki-Epe Road, Awoyaya, Lagos",
+      },
+    ],
   },
+
   donation: {
     bankName: "Wema Bank",
     accountNumber: "0249102376",
